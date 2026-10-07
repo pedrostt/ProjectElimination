@@ -1004,6 +1004,7 @@ GameObject:
   - component: {fileID: 1700000101}
   - component: {fileID: 1700000104}
   - component: {fileID: 1700000105}
+  - component: {fileID: 1700000106}
   m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -1020,11 +1021,11 @@ Transform:
   m_GameObject: {fileID: 1700000100}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.26, y: -0.2, z: 0.65}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1700000111}
+  - {fileID: 1700000161}
   m_Father: {fileID: 330585546}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1700000110
@@ -1060,7 +1061,7 @@ Transform:
   - {fileID: 1700000131}
   - {fileID: 1700000141}
   - {fileID: 1700000151}
-  m_Father: {fileID: 1700000101}
+  m_Father: {fileID: 1700000171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1700000120
 GameObject:
@@ -1391,13 +1392,102 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectElimination.Weapons.WeaponRecoil
   weapon: {fileID: 59827704}
-  recoilTransform: {fileID: 1700000101}
+  recoilTransform: {fileID: 1700000171}
   kickback: 0.04
   verticalKick: 0.012
   rotationKick: 2
   horizontalRotation: 0.2
   recoilSpeed: 35
   returnSpeed: 12
+--- !u!1 &1700000160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1700000161}
+  m_Layer: 0
+  m_Name: ADSRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1700000161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700000160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.26, y: -0.2, z: 0.65}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1700000171}
+  m_Father: {fileID: 1700000101}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1700000170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1700000171}
+  m_Layer: 0
+  m_Name: RecoilRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1700000171
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700000170}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1700000111}
+  m_Father: {fileID: 1700000161}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1700000106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700000100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7120b1ed3b47eab0945ed663b2a1fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectElimination.Weapons.WeaponADS
+  weaponView: {fileID: 1700000104}
+  adsRoot: {fileID: 1700000161}
+  playerCamera: {fileID: 330585545}
+  aimBinding: <Mouse>/rightButton
+  requireLockedCursor: 1
+  hipPosition: {x: 0.26, y: -0.2, z: 0.65}
+  hipRotation: {x: 0, y: 0, z: 0}
+  adsPosition: {x: 0, y: -0.08, z: 0.65}
+  adsRotation: {x: 0, y: 0, z: 0}
+  adsTransitionSpeed: 14
+  normalFOV: 60
+  adsFOV: 55
+  fovTransitionSpeed: 12
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
