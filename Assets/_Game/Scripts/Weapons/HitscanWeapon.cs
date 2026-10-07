@@ -1,3 +1,4 @@
+using System;
 using ProjectElimination.Gameplay;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,6 +8,9 @@ namespace ProjectElimination.Weapons
     [DisallowMultipleComponent]
     public sealed class HitscanWeapon : MonoBehaviour
     {
+        /// <summary>Raised once after a shot is cast, whether it hits or misses.</summary>
+        public event Action Fired;
+
         [Header("References")]
         [SerializeField] private InputActionAsset inputActions;
         [SerializeField] private Camera firingCamera;
@@ -92,6 +96,7 @@ namespace ProjectElimination.Weapons
             bool hasHit = Physics.Raycast(ray, out RaycastHit hit, range, hitMask, QueryTriggerInteraction.Ignore);
             Debug.DrawRay(ray.origin, ray.direction * (hasHit ? hit.distance : range),
                 hasHit ? Color.red : Color.yellow, 1f);
+            Fired?.Invoke();
 
             if (!hasHit)
             {
