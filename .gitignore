@@ -1,0 +1,54 @@
+# Unity generated files (relative to the project root)
+/[Ll]ibrary/
+/[Tt]emp/
+/[Ll]ogs/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# IDE caches and generated project files
+.vs/
+.idea/
+.vscode/
+.gradle/
+*.csproj
+*.unityproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.VC.db
+*.opendb
+*.DotSettings.user
+*.sln.docstates
+
+# Editor temporary and backup files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Operating system files
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Unity crash reports
+/sysinfo.txt
+/mono_crash.*
+
+# Assets/, Packages/, ProjectSettings/ and Unity .meta files are versioned.
