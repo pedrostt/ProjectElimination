@@ -99,16 +99,29 @@ namespace ProjectElimination.Weapons
                 return;
             }
 
-            // Search the collider and its ancestors; damage receivers need not live on the collider.
-            IDamageable target = hit.collider.GetComponentInParent<IDamageable>();
-            if (target != null) target.TakeDamage(damage);
+            float multiplier = 1f;
+            float finalDamage = damage;
+            bool damageSent;
+            if (hit.collider.TryGetComponent(out DamageHitbox hitbox))
+            {
+                multiplier = hitbox.DamageMultiplier;
+                damageSent = hitbox.TryApplyDamage(damage, out finalDamage);
+            }
+            else
+            {
+                // Simple targets still work without a hitbox, including colliders on children.
+                IDamageable target = hit.collider.GetComponentInParent<IDamageable>();
+                damageSent = target != null;
+                if (damageSent) target.TakeDamage(damage);
+            }
 
             if (debugLogs)
             {
-                string result = target != null
-                    ? $"Dano enviado ao IDamageable: {damage}."
-                    : "Objeto sem IDamageable.";
-                Debug.Log($"HitscanWeapon: atingiu '{hit.collider.gameObject.name}'. {result}", hit.collider);
+                string result = damageSent
+                    ? "Dano enviado ao IDamageable."
+                    : "Dano nao enviado: sem receptor valido ou dano nulo/invalido.";
+                Debug.Log($"HitscanWeapon: atingiu '{hit.collider.gameObject.name}'. " +
+                    $"Dano final: {finalDamage}. Multiplicador: {multiplier}. {result}", hit.collider);
             }
         }
 
