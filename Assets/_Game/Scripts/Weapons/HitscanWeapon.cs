@@ -14,6 +14,7 @@ namespace ProjectElimination.Weapons
         [Header("References")]
         [SerializeField] private InputActionAsset inputActions;
         [SerializeField] private Camera firingCamera;
+        [SerializeField] private WeaponAmmo weaponAmmo;
 
         [Header("Shot")]
         [SerializeField, Min(0.01f)] private float range = 100f;
@@ -29,9 +30,9 @@ namespace ProjectElimination.Weapons
 
         private void Awake()
         {
-            if (inputActions == null || firingCamera == null)
+            if (inputActions == null || firingCamera == null || weaponAmmo == null)
             {
-                Debug.LogError("HitscanWeapon requires an Input Actions asset and a firing camera.", this);
+                Debug.LogError("HitscanWeapon requires an Input Actions asset, a firing camera and WeaponAmmo.", this);
                 enabled = false;
                 return;
             }
@@ -90,7 +91,7 @@ namespace ProjectElimination.Weapons
 
         private void Fire()
         {
-            if (firingCamera == null) return;
+            if (firingCamera == null || weaponAmmo == null || !weaponAmmo.TryConsumeAmmo()) return;
 
             Ray ray = firingCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             bool hasHit = Physics.Raycast(ray, out RaycastHit hit, range, hitMask, QueryTriggerInteraction.Ignore);
