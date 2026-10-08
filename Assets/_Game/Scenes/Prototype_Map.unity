@@ -1063,7 +1063,7 @@ Transform:
   - {fileID: 1700000131}
   - {fileID: 1700000141}
   - {fileID: 1700000151}
-  m_Father: {fileID: 1700000171}
+  m_Father: {fileID: 1700000181}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1700000120
 GameObject:
@@ -1462,7 +1462,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1700000111}
+  - {fileID: 1700000181}
   m_Father: {fileID: 1700000161}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1700000106
@@ -1553,6 +1553,75 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: Assembly-CSharp::ProjectElimination.UI.AmmoHUD
   weaponAmmo: {fileID: 59827705}
+--- !u!1 &1700000180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1700000181}
+  - component: {fileID: 1700000182}
+  m_Layer: 0
+  m_Name: AnimationRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1700000181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700000180}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1700000111}
+  m_Father: {fileID: 1700000171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1700000182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700000180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1134e64b3f471781261002b0f5b46e, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectElimination.Weapons.WeaponAnimation
+  animationRoot: {fileID: 1700000181}
+  player: {fileID: 59827701}
+  weapon: {fileID: 59827704}
+  ammo: {fileID: 59827705}
+  ads: {fileID: 1700000106}
+  idlePosition: {x: 0.002, y: 0.003, z: 0}
+  idleRotation: {x: 0.15, y: 0.1, z: 0}
+  idleFrequency: 0.8
+  walkPosition: {x: 0.008, y: 0.012, z: 0}
+  walkRotation: {x: 0.6, y: 0.3, z: 0.8}
+  walkFrequency: 1.8
+  sprintPosition: {x: 0, y: -0.075, z: -0.025}
+  sprintRotation: {x: 12, y: -8, z: 12}
+  reloadPosition: {x: 0, y: -0.08, z: 0.03}
+  reloadRotation: {x: 12, y: 0, z: -18}
+  reloadEnterFraction: 0.2
+  reloadExitFraction: 0.25
+  reloadPoseSpeed: 14
+  firePosition: {x: 0, y: 0, z: -0.006}
+  fireRotation: {x: -0.3, y: 0, z: 0.15}
+  fireReturnSpeed: 25
+  poseSpeed: 12
+  adsBlendSpeed: 14
+  adsMotionMultiplier: 0.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

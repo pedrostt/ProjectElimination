@@ -7,6 +7,12 @@ namespace ProjectElimination.Player
     [RequireComponent(typeof(CharacterController))]
     public sealed class FPSController : MonoBehaviour
     {
+        public float HorizontalSpeed { get; private set; }
+        public float WalkSpeed => walkSpeed;
+        public bool IsMoving => HorizontalSpeed > 0.05f;
+        public bool IsSprinting { get; private set; }
+        public bool IsGrounded { get; private set; }
+
         [Header("References")]
         [SerializeField] private InputActionAsset inputActions;
         [SerializeField] private Transform cameraTransform;
@@ -75,6 +81,9 @@ namespace ProjectElimination.Player
         {
             playerMap?.Disable();
             verticalVelocity = 0f;
+            HorizontalSpeed = 0f;
+            IsSprinting = false;
+            IsGrounded = false;
             SetCursorCaptured(false);
         }
 
@@ -123,7 +132,13 @@ namespace ProjectElimination.Player
                 * (sprint ? sprintSpeed : walkSpeed);
             float displacementY = verticalVelocity * deltaTime - 0.5f * gravity * deltaTime * deltaTime;
             verticalVelocity -= gravity * deltaTime;
+            Vector3 previousPosition = transform.position;
             CollisionFlags collisions = controller.Move(velocity * deltaTime + Vector3.up * displacementY);
+            Vector3 displacement = transform.position - previousPosition;
+            displacement.y = 0f;
+            HorizontalSpeed = deltaTime > 0f ? displacement.magnitude / deltaTime : 0f;
+            IsGrounded = controller.isGrounded;
+            IsSprinting = sprint && IsMoving && IsGrounded;
             if ((collisions & CollisionFlags.Above) != 0 && verticalVelocity > 0f) verticalVelocity = 0f;
             if ((collisions & CollisionFlags.Below) != 0 && verticalVelocity < 0f) verticalVelocity = -2f;
         }

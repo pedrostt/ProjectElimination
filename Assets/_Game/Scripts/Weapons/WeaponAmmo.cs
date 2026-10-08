@@ -24,11 +24,15 @@ namespace ProjectElimination.Weapons
         public int ReserveAmmo => reserveAmmo;
         public float ReloadDuration => reloadDuration;
         public bool IsReloading { get; private set; }
+        public float ReloadProgress => IsReloading
+            ? Mathf.Clamp01(1f - (float)((reloadEndTime - Time.timeAsDouble) / reloadDuration))
+            : 0f;
 
         public event Action<int, int> AmmoChanged;
         public event Action ReloadStarted;
         /// <summary>Raised only when a reload completes and transfers ammunition.</summary>
         public event Action ReloadFinished;
+        public event Action ReloadCancelled;
 
         private InputAction reloadAction;
         private double reloadEndTime;
@@ -93,8 +97,10 @@ namespace ProjectElimination.Weapons
         public void CancelReload()
         {
             // Nothing is deducted until completion, so cancellation preserves both counts.
+            bool wasReloading = IsReloading;
             IsReloading = false;
             reloadEndTime = 0d;
+            if (wasReloading) ReloadCancelled?.Invoke();
         }
 
         private void CompleteReload()
