@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 59827701}
   - component: {fileID: 59827704}
   - component: {fileID: 59827705}
+  - component: {fileID: 59827706}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1541,6 +1542,25 @@ MonoBehaviour:
   reloadDuration: 2
   reloadBinding: <Keyboard>/r
   requireLockedCursor: 1
+--- !u!114 &59827706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59827700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8a1f7e9b2d4e6a8c0d1f3b5a7e9c2d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectElimination.Audio.WeaponAudio
+  weapon: {fileID: 59827704}
+  ammo: {fileID: 59827705}
+  fireClip: {fileID: 0}
+  reloadClip: {fileID: 0}
+  fireVolume: 0.7
+  reloadVolume: 0.5
+  firePitchVariation: 0.08
 --- !u!114 &1700000202
 MonoBehaviour:
   m_ObjectHideFlags: 0
