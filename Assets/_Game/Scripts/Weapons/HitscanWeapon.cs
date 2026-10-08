@@ -10,6 +10,27 @@ namespace ProjectElimination.Weapons
     {
         /// <summary>Raised once after a shot is cast, whether it hits or misses.</summary>
         public event Action Fired;
+        public event Action<ShotResult> ShotFired;
+
+        public readonly struct ShotResult
+        {
+            public Vector3 Origin { get; }
+            public Vector3 Direction { get; }
+            public Vector3 EndPoint { get; }
+            public bool HasHit { get; }
+            public Vector3 ImpactPosition { get; }
+            public Vector3 ImpactNormal { get; }
+
+            public ShotResult(Ray ray, float range, bool hasHit, RaycastHit hit)
+            {
+                Origin = ray.origin;
+                Direction = ray.direction;
+                HasHit = hasHit;
+                EndPoint = hasHit ? hit.point : ray.GetPoint(range);
+                ImpactPosition = hasHit ? hit.point : Vector3.zero;
+                ImpactNormal = hasHit ? hit.normal : Vector3.zero;
+            }
+        }
 
         [Header("References")]
         [SerializeField] private InputActionAsset inputActions;
@@ -98,6 +119,7 @@ namespace ProjectElimination.Weapons
             Debug.DrawRay(ray.origin, ray.direction * (hasHit ? hit.distance : range),
                 hasHit ? Color.red : Color.yellow, 1f);
             Fired?.Invoke();
+            ShotFired?.Invoke(new ShotResult(ray, range, hasHit, hit));
 
             if (!hasHit)
             {

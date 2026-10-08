@@ -1007,6 +1007,7 @@ GameObject:
   - component: {fileID: 1700000104}
   - component: {fileID: 1700000105}
   - component: {fileID: 1700000106}
+  - component: {fileID: 1700000107}
   m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -1622,6 +1623,36 @@ MonoBehaviour:
   poseSpeed: 12
   adsBlendSpeed: 14
   adsMotionMultiplier: 0.2
+--- !u!114 &1700000107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700000100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c087b9c07c47a8bcbb3f736ba3f1f6, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectElimination.Weapons.WeaponEffects
+  weapon: {fileID: 59827704}
+  muzzlePoint: {fileID: 1700000151}
+  effectsMaterial: {fileID: 2100000, guid: 047894509fda41d2a8b6dad632104ef7, type: 2}
+  muzzleFlashEnabled: 1
+  muzzleDuration: 0.045
+  muzzleSize: 0.07
+  muzzleIntensity: 2.5
+  muzzleColor: {r: 1, g: 0.65, b: 0.15, a: 1}
+  tracerEnabled: 1
+  tracerDuration: 0.06
+  tracerWidth: 0.008
+  tracerPoolSize: 4
+  tracerColor: {r: 1, g: 0.8, b: 0.35, a: 0.7}
+  impactEnabled: 1
+  impactDuration: 0.2
+  impactSize: 0.025
+  impactPoolSize: 12
+  impactColor: {r: 1, g: 0.85, b: 0.5, a: 1}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
